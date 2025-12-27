@@ -21,7 +21,7 @@ const Service = ({ data }) => {
                 data-aos-delay={index * 100}
                 className="border border-primary/10 hover:border-primary/30 transition-all duration-300 hover:shadow-lg"
               >
-                <CardHeader className="pb-2">
+                <CardHeader className="pb-2 flex flex-col items-center text-center">
                   <div className="w-12 h-12 flex items-center justify-center rounded-full bg-primary/10 text-primary mb-4">
                     {IconComponent && <IconComponent className="text-2xl" />}{" "}
                   </div>

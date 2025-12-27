@@ -1,10 +1,34 @@
-import React from "react";
+import React, { useState } from "react";
 import * as ReactIcons from "react-icons/fa";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
 
 const Contact = ({ data }) => {
+  const [result, setResult] = useState("");
+
+  const onSubmit = async (event) => {
+    event.preventDefault();
+    setResult("Sending....");
+    const formData = new FormData(event.target);
+    formData.append("access_key", "77a25902-8bed-4e59-b8b9-62c71061ef4e");
+    setResult("Form Submitted Successfully");
+    event.target.reset();
+
+    const response = await fetch("https://api.web3forms.com/submit", {
+      method: "POST",
+      body: formData,
+    });
+
+    const data = await response.json();
+    if (data.success) {
+      setResult("Form Submitted Successfully");
+      event.target.reset();
+    } else {
+      setResult("Error");
+    }
+  };
+
   return (
     <section id="contact" className="py-20">
       <div className="container mx-auto px-4">
@@ -58,7 +82,14 @@ const Contact = ({ data }) => {
           </div>
           <div data-aos="fade-left">
             <h3 className="text-2xl font-bold mb-6">Send Me a Message</h3>
-            <form className="space-y-4">
+
+            {result && (
+              <div className="mb-4 text-center text-primary font-medium">
+                {result}
+              </div>
+            )}
+
+            <form className="space-y-4" onSubmit={onSubmit}>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
                   <label
@@ -67,7 +98,7 @@ const Contact = ({ data }) => {
                   >
                     Name
                   </label>
-                  <Input id="name" placeholder="Your Name" />
+                  <Input id="name" name="name" placeholder="Your Name" />
                 </div>
                 <div>
                   <label
@@ -76,7 +107,12 @@ const Contact = ({ data }) => {
                   >
                     Email
                   </label>
-                  <Input id="email" type="email" placeholder="Your Email" />
+                  <Input
+                    id="email"
+                    name="email"
+                    type="email"
+                    placeholder="Your Email"
+                  />
                 </div>
               </div>
               <div>
@@ -86,7 +122,7 @@ const Contact = ({ data }) => {
                 >
                   Subject
                 </label>
-                <Input id="subject" placeholder="Subject" />
+                <Input id="subject" name="subject" placeholder="Subject" />
               </div>
               <div>
                 <label
@@ -95,8 +131,18 @@ const Contact = ({ data }) => {
                 >
                   Message
                 </label>
-                <Textarea id="message" placeholder="Your Message" rows={5} />
+                <Textarea
+                  id="message"
+                  name="message"
+                  placeholder="Your Message"
+                  rows={5}
+                />
               </div>
+              {result && (
+                <div className="mb-4 text-center text-primary font-medium">
+                  {result}
+                </div>
+              )}
               <Button type="submit" className="w-full">
                 Send Message
               </Button>

@@ -3,30 +3,73 @@ import * as ReactIcons from "react-icons/fa";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
+import { ToastContainer, toast } from "react-toastify";
 
 const Contact = ({ data }) => {
-  const [result, setResult] = useState("");
+  const [status, setStatus] = useState("idle");
+  // idle | sending | success | error
+  const [showMessage, setShowMessage] = useState(false);
+  const [fieldErrors, setFieldErrors] = useState({});
+
+  const handleFieldChange = (field) => (e) => {
+    if (e.target.value.trim()) {
+      setFieldErrors((prev) => ({ ...prev, [field]: undefined }));
+    }
+  };
 
   const onSubmit = async (event) => {
     event.preventDefault();
-    setResult("Sending....");
+
+    const form = event.target;
+    const errors = {};
+
+    if (!form.name.value.trim()) errors.name = "Name is required";
+    if (!form.email.value.trim()) errors.email = "Email is required";
+    if (!form.subject.value.trim()) errors.subject = "Subject is required";
+    if (!form.message.value.trim()) errors.message = "Message is required";
+
+    if (Object.keys(errors).length > 0) {
+      setFieldErrors(errors);
+      return;
+    }
+
+    setFieldErrors({});
+
+    setStatus("sending");
+
     const formData = new FormData(event.target);
     formData.append("access_key", "77a25902-8bed-4e59-b8b9-62c71061ef4e");
-    setResult("Message Sent Successfully");
-    event.target.reset();
 
-    const response = await fetch("https://api.web3forms.com/submit", {
-      method: "POST",
-      body: formData,
-    });
+    try {
+      const response = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        body: formData,
+      });
+      const data = await response.json();
 
-    const data = await response.json();
-    if (data.success) {
-      setResult("Message Sent Successfully");
-      event.target.reset();
-    } else {
-      setResult("Something went wrong!, please try again.");
+      if (data.success) {
+        setStatus("success");
+        setFieldErrors({});
+        setShowMessage(true);
+        toast.success("Message Sent Successfully");
+        event.target.reset();
+      } else {
+        setStatus("error");
+        setShowMessage(true);
+        toast.error("Something went wrong! Please try again.");
+      }
+    } catch {
+      setStatus("error");
+      toast.error("Something went wrong! Please try again.");
     }
+
+    setTimeout(() => {
+      setShowMessage(false);
+    }, 5000);
+
+    setTimeout(() => {
+      setStatus("idle");
+    }, 6000);
   };
 
   return (
@@ -86,9 +129,25 @@ const Contact = ({ data }) => {
                 Send Me a Message
               </h3>
 
-              {result && (
-                <div className="mb-4 text-center text-primary font-medium">
-                  {result}
+              {status === "success" && (
+                <div
+                  className={`mb-4 text-center font-medium text-green-500 transition-opacity duration-500 ${
+                    showMessage ? "opacity-100" : "opacity-0"
+                  }`}
+                  data-aos="fade-in"
+                >
+                  Message Sent Successfully
+                </div>
+              )}
+
+              {status === "error" && (
+                <div
+                  className={`mb-4 text-center font-medium text-red-500 transition-opacity duration-500 ${
+                    showMessage ? "opacity-100" : "opacity-0"
+                  }`}
+                  data-aos="fade-in"
+                >
+                  Something went wrong! Please try again.
                 </div>
               )}
 
@@ -101,7 +160,17 @@ const Contact = ({ data }) => {
                     >
                       Name
                     </label>
-                    <Input id="name" name="name" placeholder="Your Name" />
+                    <Input
+                      id="name"
+                      name="name"
+                      placeholder="Your Name"
+                      onChange={handleFieldChange("name")}
+                    />
+                    {fieldErrors.name && (
+                      <p className="text-sm text-red-500 mt-1">
+                        {fieldErrors.name}
+                      </p>
+                    )}
                   </div>
                   <div>
                     <label
@@ -115,7 +184,13 @@ const Contact = ({ data }) => {
                       name="email"
                       type="email"
                       placeholder="Your Email"
+                      onChange={handleFieldChange("email")}
                     />
+                    {fieldErrors.email && (
+                      <p className="text-sm text-red-500 mt-1">
+                        {fieldErrors.email}
+                      </p>
+                    )}
                   </div>
                 </div>
 
@@ -126,7 +201,17 @@ const Contact = ({ data }) => {
                   >
                     Subject
                   </label>
-                  <Input id="subject" name="subject" placeholder="Subject" />
+                  <Input
+                    id="subject"
+                    name="subject"
+                    placeholder="Subject"
+                    onChange={handleFieldChange("subject")}
+                  />
+                  {fieldErrors.subject && (
+                    <p className="text-sm text-red-500 mt-1">
+                      {fieldErrors.subject}
+                    </p>
+                  )}
                 </div>
 
                 <div>
@@ -141,17 +226,28 @@ const Contact = ({ data }) => {
                     name="message"
                     placeholder="Your Message"
                     rows={5}
+                    onChange={handleFieldChange("message")}
                   />
+                  {fieldErrors.message && (
+                    <p className="text-sm text-red-500 mt-1">
+                      {fieldErrors.message}
+                    </p>
+                  )}
                 </div>
 
-                <Button type="submit" className="w-full mt-2">
-                  {result === "Sending...." ? "Sending..." : "Send Message"}
+                <Button
+                  type="submit"
+                  className="w-full mt-2"
+                  disabled={status === "sending"}
+                >
+                  {status === "sending" ? "Sending..." : "Send Message"}
                 </Button>
               </form>
             </div>
           </div>
         </div>
       </div>
+      <ToastContainer />
     </section>
   );
 };

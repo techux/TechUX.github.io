@@ -31,7 +31,7 @@ const Header = ({ data, scrollToSection, activeSection }) => {
       <div className="container mx-auto px-4">
         <div className="flex h-16 items-center justify-between">
           <Link href="/" className="text-2xl font-bold whitespace-nowrap">
-            {data.name.split(" ")[0]}
+            {data.name.split(" ")[0]}&nbsp;
             <span className="text-primary">{data.name.split(" ")[1]}</span>
           </Link>
 

@@ -1,7 +1,11 @@
-import { Badge } from "@/components/ui/badge";
 import Image from "next/image";
 
 const Skills = ({ data }) => {
+  const showProfessional =
+    false &&
+    Array.isArray(data.skills.professional) &&
+    data.skills.professional.length > 0;
+
   return (
     <section
       id="skills"
@@ -15,7 +19,13 @@ const Skills = ({ data }) => {
           My <span className="text-primary">Skills</span>
         </h2>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
+        <div
+          className={`grid gap-10 ${
+            showProfessional
+              ? "grid-cols-1 md:grid-cols-2"
+              : "grid-cols-1 w-1/2 mx-auto"
+          }`}
+        >
           <div data-aos="fade-right">
             <h3 className="text-2xl font-bold mb-6">Technical Skills</h3>
             <div className="space-y-5">
@@ -41,30 +51,32 @@ const Skills = ({ data }) => {
             </div>
           </div>
 
-          <div data-aos="fade-left">
-            <h3 className="text-2xl font-bold mb-6">Professional Skills</h3>
-            <div className="space-y-5">
-              {data.skills.professional.map((skill, index) => (
-                <div
-                  key={index}
-                  className="space-y-2 max-w-xs md:max-w-full mx-auto"
-                >
-                  <div className="flex justify-between text-sm font-medium">
-                    <span>{skill.name}</span>
-                    <span>{skill.level}%</span>
+          {showProfessional && (
+            <div data-aos="fade-left">
+              <h3 className="text-2xl font-bold mb-6">Professional Skills</h3>
+              <div className="space-y-5">
+                {data.skills.professional.map((skill, index) => (
+                  <div
+                    key={index}
+                    className="space-y-2 max-w-xs md:max-w-full mx-auto"
+                  >
+                    <div className="flex justify-between text-sm font-medium">
+                      <span>{skill.name}</span>
+                      <span>{skill.level}%</span>
+                    </div>
+                    <div className="w-full h-3 bg-muted rounded-full overflow-hidden">
+                      <div
+                        className="h-full bg-primary rounded-full transition-all duration-500"
+                        style={{ width: `${skill.level}%` }}
+                        data-aos="slide-right"
+                        data-aos-delay={index * 100}
+                      ></div>
+                    </div>
                   </div>
-                  <div className="w-full h-3 bg-muted rounded-full overflow-hidden">
-                    <div
-                      className="h-full bg-primary rounded-full transition-all duration-500"
-                      style={{ width: `${skill.level}%` }}
-                      data-aos="slide-right"
-                      data-aos-delay={index * 100}
-                    ></div>
-                  </div>
-                </div>
-              ))}
+                ))}
+              </div>
             </div>
-          </div>
+          )}
         </div>
 
         <div className="mt-16" data-aos="fade-up">
@@ -91,15 +103,29 @@ const Skills = ({ data }) => {
           <h3 className="text-2xl font-bold mb-6 text-center">
             Technologies & Tools
           </h3>
-          <div className="flex flex-wrap justify-center gap-3">
+
+          <div className="flex flex-wrap justify-center gap-4">
             {data.skills.technologies.map((tech, index) => (
-              <Badge
+              <div
                 key={index}
-                variant="outline"
-                className="px-4 py-2 text-sm hover:bg-primary hover:text-primary-foreground transition"
+                className="group relative h-9 px-4 flex items-center gap-2 border rounded-full text-sm transition-all duration-300 ease-in-out hover:h-32 hover:w-32 hover:px-0 hover:rounded-xl overflow-hidden will-change-[width,height]"
               >
-                <span><img src={tech.image} alt={tech.name} className="inline-block w-4 h-4 mr-2" /></span>{tech.name}
-              </Badge>
+                <img
+                  src={tech.image}
+                  alt={tech.name}
+                  className="pointer-events-none absolute inset-0 w-full h-full object-contain opacity-0 transition-opacity duration-300 group-hover:opacity-50"
+                />
+
+                <img
+                  src={tech.image}
+                  alt={tech.name}
+                  className=" w-4 h-4 transition-all duration-300 group-hover:opacity-0 "
+                />
+
+                <span className=" relative z-10 transition-all duration-300 group-hover:absolute group-hover:inset-0 group-hover:flex group-hover:items-center group-hover:justify-center group-hover:dark:text-white group-hover:text-center group-hover:text-lg group-hover:font-bold ">
+                  {tech.name}
+                </span>
+              </div>
             ))}
           </div>
         </div>

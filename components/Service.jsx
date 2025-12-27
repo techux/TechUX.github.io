@@ -13,7 +13,7 @@ const Service = ({ data }) => {
         </h2>
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           {data.services.map((service, index) => {
-            const IconComponent = LucideIcons[service.icon]; // get the component dynamically
+            const IconComponent = LucideIcons[service.icon];
             return (
               <Card
                 key={index}

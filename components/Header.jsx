@@ -1,37 +1,42 @@
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import { useTheme } from "next-themes";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Sun, Moon } from "lucide-react";
+import { Sun, Moon, Menu, X } from "lucide-react";
+
+const sections = [
+  "home",
+  "about",
+  "services",
+  "skills",
+  "education",
+  "experience",
+  "projects",
+  "contact",
+];
 
 const Header = ({ data, scrollToSection, activeSection }) => {
   const { theme, setTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
 
-  useEffect(() => {
-    setMounted(true);
-  }, []);
+  useEffect(() => setMounted(true), []);
+
+  const handleNavClick = (section) => {
+    scrollToSection(section);
+    setMenuOpen(false);
+  };
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-sm border-b">
-      <div className="container mx-auto px-4 py-4">
-        <div className="flex items-center justify-between">
-          <Link href="/" className="text-2xl font-bold">
+    <header className="fixed inset-x-0 top-0 z-50 overflow-x-hidden border-b bg-background/80 backdrop-blur">
+      <div className="container mx-auto px-4">
+        <div className="flex h-16 items-center justify-between">
+          <Link href="/" className="text-2xl font-bold whitespace-nowrap">
             {data.name.split(" ")[0]}
             <span className="text-primary">{data.name.split(" ")[1]}</span>
           </Link>
 
-          <nav className="hidden md:flex space-x-6">
-            {[
-              "home",
-              "about",
-              "services",
-              "skills",
-              "education",
-              "experience",
-              "projects",
-              "contact",
-            ].map((section) => (
+          <nav className="hidden md:flex items-center gap-6">
+            {sections.map((section) => (
               <button
                 key={section}
                 onClick={() => scrollToSection(section)}
@@ -44,10 +49,10 @@ const Header = ({ data, scrollToSection, activeSection }) => {
             ))}
           </nav>
 
-          <div className="flex items-center space-x-4">
+          <div className="flex items-center gap-2">
             <button
               onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-              className="p-2 rounded-full hover:bg-muted transition-colors"
+              className="rounded-full p-2 hover:bg-muted transition"
               aria-label="Toggle theme"
             >
               {mounted && theme === "dark" ? (
@@ -57,37 +62,36 @@ const Header = ({ data, scrollToSection, activeSection }) => {
               )}
             </button>
 
-            <div className="md:hidden">
-              <Tabs defaultValue="home" className="w-[200px]">
-                <TabsList>
-                  <TabsTrigger value="menu">Menu</TabsTrigger>
-                </TabsList>
-                <TabsContent
-                  value="menu"
-                  className="absolute right-0 mt-2 w-48 py-2 bg-background border rounded-md shadow-lg"
-                >
-                  {[
-                    "home",
-                    "about",
-                    "services",
-                    "skills",
-                    "education",
-                    "experience",
-                    "projects",
-                    "contact",
-                  ].map((section) => (
-                    <button
-                      key={section}
-                      onClick={() => scrollToSection(section)}
-                      className="block w-full text-left px-4 py-2 text-sm capitalize hover:bg-muted"
-                    >
-                      {section}
-                    </button>
-                  ))}
-                </TabsContent>
-              </Tabs>
-            </div>
+            <button
+              className="md:hidden rounded-md p-2 hover:bg-muted transition"
+              onClick={() => setMenuOpen((v) => !v)}
+              aria-label="Toggle menu"
+            >
+              {menuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+            </button>
           </div>
+        </div>
+      </div>
+
+      <div
+        className={`md:hidden border-t bg-background overflow-hidden transition-all duration-300 ease-in-out ${
+          menuOpen ? "max-h-screen opacity-100" : "max-h-0 opacity-0"
+        }`}
+      >
+        <div className="container mx-auto px-4">
+          <nav className="flex flex-col py-2">
+            {sections.map((section) => (
+              <button
+                key={section}
+                onClick={() => handleNavClick(section)}
+                className={`w-full py-3 text-left text-sm capitalize transition hover:bg-muted ${
+                  activeSection === section ? "font-medium text-primary" : ""
+                }`}
+              >
+                {section}
+              </button>
+            ))}
+          </nav>
         </div>
       </div>
     </header>

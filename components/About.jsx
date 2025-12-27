@@ -3,29 +3,40 @@ import { Button } from "@/components/ui/button";
 
 const About = ({ data }) => {
   return (
-    <section id="about" className="py-20 bg-muted/30">
+    <section id="about" className="bg-muted/30 py-16 md:py-20 overflow-x-hidden">
       <div className="container mx-auto px-4">
         <h2
-          className="text-3xl md:text-4xl font-bold text-center mb-16"
+          className="mb-12 text-center text-2xl font-bold md:mb-16 md:text-4xl"
           data-aos="fade-up"
         >
           About <span className="text-primary">Me</span>
         </h2>
-        <div className="grid md:grid-cols-2 gap-10 items-center">
-          <div className="flex justify-center" data-aos="fade-right">
-            <div className="relative w-64 h-64 md:w-80 md:h-80 rounded-full overflow-hidden border-4 border-primary/20">
+
+        <div className="grid gap-10 md:grid-cols-2 md:items-center">
+          <div
+            className="flex justify-center"
+            data-aos="fade-right"
+          >
+            <div className="relative h-56 w-56 overflow-hidden rounded-full border-4 border-primary/20 sm:h-64 sm:w-64 md:h-80 md:w-80">
               <Image
                 src={data.profileImage || "/placeholder.svg"}
                 alt={data.name}
                 fill
                 className="object-cover"
-                sizes="(max-width: 768px) 16rem, 20rem"
+                sizes="(max-width: 640px) 14rem, (max-width: 768px) 16rem, 20rem"
               />
             </div>
           </div>
-          <div data-aos="fade-left">
-            <p className="text-muted-foreground mb-6">{data.about}</p>
-            <div className="grid grid-cols-2 gap-4 mb-6">
+
+          <div
+            className="text-center md:text-left"
+            data-aos="fade-left"
+          >
+            <p className="mb-6 text-sm text-muted-foreground sm:text-base">
+              {data.about}
+            </p>
+
+            <div className="mb-8 grid grid-cols-1 gap-3 sm:grid-cols-2">
               {data.personalDetails.map((detail, index) => (
                 <div key={index}>
                   <span className="font-semibold">{detail.label}:</span>{" "}
@@ -33,7 +44,8 @@ const About = ({ data }) => {
                 </div>
               ))}
             </div>
-            <Button asChild>
+
+            <Button asChild className="w-full sm:w-auto">
               <a
                 href={data.resumeUrl}
                 target="_blank"

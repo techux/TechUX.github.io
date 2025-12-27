@@ -65,7 +65,7 @@ export const metadata: Metadata = {
     title: "Devesh Singh | Full Stack Developer",
     description: data.shortBio,
     images: [data.profileImage],
-    creator: "@yourTwitterHandle", // optional
+    creator: "@deveshsingh75",
   },
 
   robots: {

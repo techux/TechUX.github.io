@@ -12,7 +12,7 @@ const Contact = ({ data }) => {
     setResult("Sending....");
     const formData = new FormData(event.target);
     formData.append("access_key", "77a25902-8bed-4e59-b8b9-62c71061ef4e");
-    setResult("Form Submitted Successfully");
+    setResult("Message Sent Successfully");
     event.target.reset();
 
     const response = await fetch("https://api.web3forms.com/submit", {
@@ -22,10 +22,10 @@ const Contact = ({ data }) => {
 
     const data = await response.json();
     if (data.success) {
-      setResult("Form Submitted Successfully");
+      setResult("Message Sent Successfully");
       event.target.reset();
     } else {
-      setResult("Error");
+      setResult("Something went wrong!, please try again.");
     }
   };
 

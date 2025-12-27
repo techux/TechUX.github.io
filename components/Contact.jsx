@@ -80,73 +80,75 @@ const Contact = ({ data }) => {
               })}
             </div>
           </div>
-          <div data-aos="fade-left">
-            <h3 className="text-2xl font-bold mb-6">Send Me a Message</h3>
+          <div data-aos="fade-left" className="flex justify-center">
+            <div className="w-full max-w-lg bg-background/80 backdrop-blur-md p-6 sm:p-8 rounded-lg shadow-md">
+              <h3 className="text-2xl font-bold mb-6 text-center">
+                Send Me a Message
+              </h3>
 
-            {result && (
-              <div className="mb-4 text-center text-primary font-medium">
-                {result}
-              </div>
-            )}
-
-            <form className="space-y-4" onSubmit={onSubmit}>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <div>
-                  <label
-                    htmlFor="name"
-                    className="block text-sm font-medium mb-1"
-                  >
-                    Name
-                  </label>
-                  <Input id="name" name="name" placeholder="Your Name" />
-                </div>
-                <div>
-                  <label
-                    htmlFor="email"
-                    className="block text-sm font-medium mb-1"
-                  >
-                    Email
-                  </label>
-                  <Input
-                    id="email"
-                    name="email"
-                    type="email"
-                    placeholder="Your Email"
-                  />
-                </div>
-              </div>
-              <div>
-                <label
-                  htmlFor="subject"
-                  className="block text-sm font-medium mb-1"
-                >
-                  Subject
-                </label>
-                <Input id="subject" name="subject" placeholder="Subject" />
-              </div>
-              <div>
-                <label
-                  htmlFor="message"
-                  className="block text-sm font-medium mb-1"
-                >
-                  Message
-                </label>
-                <Textarea
-                  id="message"
-                  name="message"
-                  placeholder="Your Message"
-                  rows={5}
-                />
-              </div>
               {result && (
                 <div className="mb-4 text-center text-primary font-medium">
                   {result}
                 </div>
               )}
-              <Button type="submit" className="w-full">
-                Send Message
-              </Button>
-            </form>
+
+              <form className="space-y-4" onSubmit={onSubmit}>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <div>
+                    <label
+                      htmlFor="name"
+                      className="block text-sm font-medium mb-1"
+                    >
+                      Name
+                    </label>
+                    <Input id="name" name="name" placeholder="Your Name" />
+                  </div>
+                  <div>
+                    <label
+                      htmlFor="email"
+                      className="block text-sm font-medium mb-1"
+                    >
+                      Email
+                    </label>
+                    <Input
+                      id="email"
+                      name="email"
+                      type="email"
+                      placeholder="Your Email"
+                    />
+                  </div>
+                </div>
+
+                <div>
+                  <label
+                    htmlFor="subject"
+                    className="block text-sm font-medium mb-1"
+                  >
+                    Subject
+                  </label>
+                  <Input id="subject" name="subject" placeholder="Subject" />
+                </div>
+
+                <div>
+                  <label
+                    htmlFor="message"
+                    className="block text-sm font-medium mb-1"
+                  >
+                    Message
+                  </label>
+                  <Textarea
+                    id="message"
+                    name="message"
+                    placeholder="Your Message"
+                    rows={5}
+                  />
+                </div>
+
+                <Button type="submit" className="w-full mt-2">
+                  {result === "Sending...." ? "Sending..." : "Send Message"}
+                </Button>
+              </form>
+            </div>
           </div>
         </div>
       </div>

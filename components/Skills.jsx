@@ -23,7 +23,7 @@ const Skills = ({ data }) => {
           className={`grid gap-10 ${
             showProfessional
               ? "grid-cols-1 md:grid-cols-2"
-              : "grid-cols-1 w-1/2 mx-auto"
+              : "grid-cols-1 md:w-1/2 mx-auto"
           }`}
         >
           <div data-aos="fade-right">

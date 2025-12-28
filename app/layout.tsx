@@ -96,6 +96,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
+        <meta name="google-site-verification" content="oJkPdfq46rmoO3pbOSm_9N9Jb5x0tWqpqY68Gf7CDvk" />
         <link
           rel="stylesheet"
           href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css"

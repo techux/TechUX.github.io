@@ -9,11 +9,11 @@ import data from "@/public/data.json";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://devesh.is-a.dev"),
+  metadataBase: new URL(data.url),
 
   title: {
-    default: "Devesh Singh | Full Stack Developer",
-    template: "%s | Devesh Singh",
+    default: `${data.name} | ${data.position}`,
+    template: `%s | ${data.name}`,
   },
 
   description: data.shortBio,
@@ -27,14 +27,23 @@ export const metadata: Metadata = {
     "Portfolio",
     "JavaScript Developer",
     "TypeScript",
+    "Devesh Singh Full Stack Developer",
+    "Next.js Developer Portfolio",
+    "React Developer India",
+    "Freelance Full Stack Developer",
+    "Web Developer Portfolio 2025",
+    "TypeScript Developer",
   ],
 
-  authors: [{ name: "Devesh Singh", url: "https://devesh.is-a.dev" }],
-  creator: "Devesh Singh",
-  publisher: "Devesh Singh",
+  authors: [{ name: data.name, url: data.url }],
+  creator: data.name,
+  publisher: data.name,
 
   alternates: {
-    canonical: "https://devesh.is-a.dev/",
+    canonical: data.url,
+    languages: {
+      "en-US": data.url,
+    },
   },
 
   icons: {
@@ -44,16 +53,16 @@ export const metadata: Metadata = {
   },
 
   openGraph: {
-    title: "Devesh Singh | Full Stack Developer",
+    title: `${data.name} | ${data.position}`,
     description: data.shortBio,
-    url: "https://devesh.is-a.dev/",
-    siteName: "Devesh Singh Portfolio",
+    url: data.url,
+    siteName: `${data.name} Portfolio`,
     images: [
       {
         url: data.profileImage,
         width: 1200,
         height: 630,
-        alt: "Devesh Singh Portfolio",
+        alt: `${data.name} Portfolio`,
       },
     ],
     locale: "en_US",
@@ -62,7 +71,7 @@ export const metadata: Metadata = {
 
   twitter: {
     card: "summary_large_image",
-    title: "Devesh Singh | Full Stack Developer",
+    title: `${data.name} | ${data.position}`,
     description: data.shortBio,
     images: [data.profileImage],
     creator: "@deveshsingh75",
@@ -88,6 +97,49 @@ export const metadata: Metadata = {
   themeColor: "#ffffff",
 };
 
+const experienceSchema = data.experience.map((exp) => ({
+  "@type": "Role",
+  roleName: exp.position,
+  description: exp.description.join(" "),
+  startDate: exp.startDate,
+  ...(exp.endDate !== "Present" && { endDate: exp.endDate }),
+  worksFor: {
+    "@type": "Organization",
+    name: exp.company,
+  },
+}));
+
+const projectSchema = data.projects
+  .filter((project) => project.display)
+  .map((project) => {
+    const base = {
+      name: project.title,
+      description: project.description,
+      url: project.demoUrl || project.codeUrl,
+      creator: {
+        "@type": "Person",
+        name: data.name,
+      },
+      about: project.technologies,
+    };
+
+    // Open-source / package project
+    if (project.codeUrl && project.demoUrl?.includes("pypi.org")) {
+      return {
+        "@type": "SoftwareSourceCode",
+        ...base,
+        codeRepository: project.codeUrl,
+        programmingLanguage: project.technologies,
+      };
+    }
+
+    // Regular project
+    return {
+      "@type": "CreativeWork",
+      ...base,
+    };
+  });
+
 export default function RootLayout({
   children,
 }: {
@@ -96,31 +148,45 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
-        <meta name="google-site-verification" content="oJkPdfq46rmoO3pbOSm_9N9Jb5x0tWqpqY68Gf7CDvk" />
+        <meta
+          name="google-site-verification"
+          content="oJkPdfq46rmoO3pbOSm_9N9Jb5x0tWqpqY68Gf7CDvk"
+        />
         <link
           rel="stylesheet"
           href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css"
         />
 
         <Script
-          id="person-jsonld"
+          id="profile-jsonld"
           type="application/ld+json"
-          strategy="afterInteractive"
+          strategy="beforeInteractive"
           dangerouslySetInnerHTML={{
             __html: JSON.stringify({
               "@context": "https://schema.org",
-              "@type": "Person",
-              name: "Devesh Singh",
-              url: "https://devesh.is-a.dev",
-              image: data.profileImage,
-              email: "mailto:deveshkumarsingh75@gmail.com",
-              sameAs: [
-                "https://techux.github.io/",
-                "https://github.com/techux",
-                "https://www.linkedin.com/in/devesh75",
-              ],
-              jobTitle: "Full Stack Developer",
+              "@type": "ProfilePage",
+              "@id": `${data.url}#profile`,
+              url: data.url,
+              name: `${data.name} | ${data.position}`,
               description: data.shortBio,
+
+              mainEntity: {
+                "@type": "Person",
+                "@id": `${data.url}#person`,
+                name: data.name,
+                url: data.url,
+                image: data.profileImage,
+                email: `mailto:${data.email}`,
+                jobTitle: data.position,
+                sameAs: Object.values(data.socialLinks)
+                  .flat()
+                  .map((social) => social.url),
+                knowsAbout: Object.values(data.skills.technologies)
+                  .flat()
+                  .map((skill) => skill.name),
+                worksFor: experienceSchema,
+              },
+              hasPart: projectSchema.length ? projectSchema : undefined,
             }),
           }}
         />

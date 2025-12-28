@@ -1,5 +1,8 @@
 {
   "name": "Devesh Singh",
+  "email": "deveshkumarsingh75@gmail.com",
+  "position": "Full Stack Developer",
+  "url": "https://devesh.is-a.dev/",
   "roles": [
     "Software Developer",
     "Backend Developer",
@@ -202,6 +205,8 @@
     {
       "company": "Aarsaar Technologies Pvt. Ltd.",
       "position": "SDE Intern (Backend Development)",
+      "startDate": "2024-04",
+      "endDate": "Present",
       "duration": "April, 2025 - Present",
       "description": [
         "Built scalable backend APIs with Node.js and Express, handling 1,500+ daily requests and improving MongoDB performance by 20%.",
@@ -212,6 +217,8 @@
     {
       "company": "AI Chef Master",
       "position": "Backend Developer",
+      "startDate": "2025-02",
+      "endDate": "2025-06",
       "duration": "Feb 2025 - Jun 2025",
       "description": [
         "Optimized backend services in Python with MongoDB, improving data retrieval speed by 40% and ensuring 99.9% uptime.",

@@ -152,6 +152,7 @@ export default function RootLayout({
           name="google-site-verification"
           content="oJkPdfq46rmoO3pbOSm_9N9Jb5x0tWqpqY68Gf7CDvk"
         />
+        <meta name="msvalidate.01" content="CD863E2F707FF84BE4F5A51ABE8336B4" />
         <link
           rel="stylesheet"
           href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css"

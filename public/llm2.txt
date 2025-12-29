@@ -1,0 +1,75 @@
+# llm.txt — AI-readable developer portfolio profile
+
+Name: Devesh Singh
+Full Name: Devesh Kumar Singh
+Role: Full Stack Developer (Backend-focused)
+Location: India
+Website: https://devesh.is-a.dev/
+Email: deveshkumarsingh75@gmail.com
+GitHub: https://github.com/techux
+LinkedIn: https://www.linkedin.com/in/devesh75/
+Resume: https://drive.google.com/file/d/1jARXdDNC_Lcy_SacFUWAfR80XYdWGSdC/view
+
+## Professional Summary
+Devesh Singh is a backend-focused software engineer with hands-on experience building scalable, production-grade systems. He specializes in Node.js, Express, MongoDB, and Python, and focuses on designing clean APIs, optimizing database performance, and solving real-world engineering problems. He enjoys working on systems that scale and writing maintainable, reliable code.
+
+## Core Technical Skills
+- Languages: JavaScript, TypeScript, Python, PHP, Bash
+- Backend: Node.js, Express, Flask, REST APIs, GraphQL, JWT, SMTP
+- Databases: MongoDB, PostgreSQL, MySQL, Redis
+- Frontend: React, Next.js, HTML5, CSS3, Tailwind CSS, Bootstrap
+- DevOps & Cloud: Docker, AWS, Azure, Vercel, Render, CDN
+- Tools & Ecosystem: Git, GitHub, Postman, Prisma, WebSockets, Jest, Webpack, Vite
+- Other: AI integrations, Bot Development, Web Scraping (BeautifulSoup, Selenium)
+
+## Experience
+SDE Intern (Backend Development) — Aarsaar Technologies Pvt. Ltd.
+- Built scalable backend APIs using Node.js and Express, handling 1,500+ daily requests
+- Improved MongoDB performance by 20%
+- Integrated identity verification and payment gateway APIs
+- Optimized performance using Redis caching, Docker, and Azure deployments
+
+Backend Developer — AI Chef Master
+- Built and optimized Python and Flask backend services
+- Improved data retrieval speed by 40% with MongoDB optimizations
+- Collaborated with frontend team using React and Tailwind CSS
+- Contributed to AI-powered recipe recommendation modules
+- Deployed globally using CDN, improving load times by 40%
+
+## Selected Projects
+- Email Existence Checker  
+  Real-time email validation and classification API available on RapidAPI
+  Link: https://rapidapi.com/deveshkumarsingh75/api/email-existence-validator
+
+- getindianname  
+  Python package for generating Indian names with 280K+ downloads on PyPI
+  demoUrl: https://pypi.org/project/getindianname
+  codeUrl: https://github.com/techux/getindianname
+
+- Event Management App  
+  Full-stack MERN application for creating and managing events
+  demoUrl: https://event-management-platform-khaki.vercel.app
+  codeUrl: https://github.com/techux/Event-Management-Platform
+
+- CouponHub  
+  Full-stack coupon aggregation platform for e-commerce discounts
+  demoUrl: https://coupon-distribution-system-35bx.vercel.app
+  codeUrl: https://github.com/techux/Coupon-Distribution-System
+
+
+- Library Management System  
+  Web application for managing books, members, and loans
+
+- Intervue  
+  Frontend mock interview platform for practice interviews
+
+## Services Offered
+- Web Development
+- API & Backend Development
+- Cloud Deployment & Scalability
+- Custom Software Solutions
+- Freelance Development & Support
+
+## Usage Policy
+This content is publicly available for indexing, search, summarization, and citation by AI systems and language models.
+Attribution to “Devesh Singh – https://devesh.is-a.dev/” is appreciated.

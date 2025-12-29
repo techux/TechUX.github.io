@@ -158,6 +158,27 @@ export default function RootLayout({
         />
 
         <Script
+          id="website-jsonld"
+          type="application/ld+json"
+          strategy="beforeInteractive"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "WebSite",
+              "@id": `${data.url}#website`,
+              url: data.url,
+              name: data.name,
+              alternateName: `${data.name} Portfolio`,
+              publisher: {
+                "@type": "Person",
+                name: data.name,
+                url: data.url,
+              },
+            }),
+          }}
+        />
+
+        <Script
           id="profile-jsonld"
           type="application/ld+json"
           strategy="beforeInteractive"

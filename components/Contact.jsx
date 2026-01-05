@@ -7,9 +7,10 @@ import { ToastContainer, toast } from "react-toastify";
 
 const Contact = ({ data }) => {
   const [status, setStatus] = useState("idle");
-  // idle | sending | success | error
   const [showMessage, setShowMessage] = useState(false);
   const [fieldErrors, setFieldErrors] = useState({});
+
+  const showForm = data.config?.showContactForm;
 
   const handleFieldChange = (field) => (e) => {
     if (e.target.value.trim()) {
@@ -19,7 +20,6 @@ const Contact = ({ data }) => {
 
   const onSubmit = async (event) => {
     event.preventDefault();
-
     const form = event.target;
     const errors = {};
 
@@ -28,16 +28,13 @@ const Contact = ({ data }) => {
     if (!form.subject.value.trim()) errors.subject = "Subject is required";
     if (!form.message.value.trim()) errors.message = "Message is required";
 
-    if (Object.keys(errors).length > 0) {
+    if (Object.keys(errors).length) {
       setFieldErrors(errors);
       return;
     }
 
-    setFieldErrors({});
-
     setStatus("sending");
-
-    const formData = new FormData(event.target);
+    const formData = new FormData(form);
     formData.append("access_key", "77a25902-8bed-4e59-b8b9-62c71061ef4e");
 
     try {
@@ -45,187 +42,130 @@ const Contact = ({ data }) => {
         method: "POST",
         body: formData,
       });
-      const data = await response.json();
+      const result = await response.json();
 
-      if (data.success) {
+      if (result.success) {
         setStatus("success");
-        setFieldErrors({});
-        setShowMessage(true);
         toast.success("Message Sent Successfully");
-        event.target.reset();
+        form.reset();
       } else {
-        setStatus("error");
-        setShowMessage(true);
-        toast.error("Something went wrong! Please try again.");
+        throw new Error();
       }
     } catch {
       setStatus("error");
       toast.error("Something went wrong! Please try again.");
     }
 
-    setTimeout(() => {
-      setShowMessage(false);
-    }, 5000);
-
-    setTimeout(() => {
-      setStatus("idle");
-    }, 6000);
+    setShowMessage(true);
+    setTimeout(() => setShowMessage(false), 4000);
+    setTimeout(() => setStatus("idle"), 5000);
   };
 
   return (
-    <section id="contact" className="py-20 overflow-x-hidden">
+    <section id="contact" className="py-10 overflow-x-hidden">
       <div className="container mx-auto px-4">
-        <h2
-          className="text-3xl md:text-4xl font-bold text-center mb-16"
-          data-aos="fade-up"
-        >
+        <h2 className="text-3xl md:text-4xl font-bold text-center mb-5 md:mb-14">
           Get In <span className="text-primary">Touch</span>
         </h2>
-        <div className="grid md:grid-cols-2 gap-10">
-          <div data-aos="fade-right">
-            <h3 className="text-2xl font-bold mb-6">Contact Information</h3>
-            <div className="space-y-4 mb-8">
+
+        <div
+          className={`grid gap-10 ${
+            showForm ? "md:grid-cols-2" : "max-w-3xl mx-auto"
+          }`}
+        >
+          <div className="bg-background/80 backdrop-blur-md rounded-xl p-6 sm:p-8 shadow-md">
+            <h3 className="text-2xl font-bold mb-6 text-center md:text-left">
+              Contact Information
+            </h3>
+
+            <div className="space-y-5 mb-8">
               {data.contactInfo.map((info, index) => {
-                const IconComponent = ReactIcons[info.icon];
+                const Icon = ReactIcons[info.icon];
                 return (
-                  <div key={index} className="flex items-start space-x-4">
-                    <div className="w-10 h-10 flex items-center justify-center rounded-full bg-primary/10 text-primary flex-shrink-0">
-                      <span className="text-xl">
-                        <IconComponent />
-                      </span>
+                  <div key={index} className="flex items-start gap-4">
+                    <div className="w-11 h-11 flex items-center justify-center rounded-full bg-primary/10 text-primary shrink-0">
+                      <Icon className="text-lg" />
                     </div>
                     <div>
-                      <h4 className="font-semibold">{info.type}</h4>
-                      <p className="text-muted-foreground">{info.value}</p>
+                      <p className="font-semibold">{info.type}</p>
+                      <p className="text-muted-foreground text-sm">
+                        {info.value}
+                      </p>
                     </div>
                   </div>
                 );
               })}
             </div>
-            <div className="flex space-x-4">
+
+            <div className="flex flex-wrap justify-center md:justify-start gap-4">
               {data.socialLinks.map((social, index) => {
-                const IconComponent = ReactIcons[social.icon];
+                const Icon = ReactIcons[social.icon];
                 return (
                   <a
                     key={index}
                     href={social.url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="w-10 h-10 flex items-center justify-center rounded-full bg-background border border-primary/20 text-primary hover:bg-primary hover:text-primary-foreground transition-colors duration-300"
                     aria-label={social.name}
-                    title={social.name}
+                    className="w-11 h-11 flex items-center justify-center rounded-full border border-primary/20 text-primary hover:bg-primary hover:text-primary-foreground transition-colors"
                   >
-                    <span className="text-lg">
-                      <IconComponent />
-                    </span>
+                    <Icon />
                   </a>
                 );
               })}
             </div>
           </div>
-          <div data-aos="fade-left" className="flex justify-center">
-            <div className="w-full max-w-lg bg-background/80 backdrop-blur-md p-6 sm:p-8 rounded-lg shadow-md">
+
+          {showForm && (
+            <div className="bg-background/80 backdrop-blur-md rounded-xl p-6 sm:p-8 shadow-md">
               <h3 className="text-2xl font-bold mb-6 text-center">
                 Send Me a Message
               </h3>
 
-              {status === "success" && (
-                <div
-                  className={`mb-4 text-center font-medium text-green-500 transition-opacity duration-500 ${
+              {status !== "idle" && (
+                <p
+                  className={`mb-4 text-center font-medium transition-opacity ${
                     showMessage ? "opacity-100" : "opacity-0"
+                  } ${
+                    status === "success" ? "text-green-500" : "text-red-500"
                   }`}
-                  data-aos="fade-in"
                 >
-                  Message Sent Successfully
-                </div>
+                  {status === "success"
+                    ? "Message Sent Successfully"
+                    : "Something went wrong! Please try again."}
+                </p>
               )}
 
-              {status === "error" && (
-                <div
-                  className={`mb-4 text-center font-medium text-red-500 transition-opacity duration-500 ${
-                    showMessage ? "opacity-100" : "opacity-0"
-                  }`}
-                  data-aos="fade-in"
-                >
-                  Something went wrong! Please try again.
-                </div>
-              )}
-
-              <form className="space-y-4" onSubmit={onSubmit}>
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                  <div>
-                    <label
-                      htmlFor="name"
-                      className="block text-sm font-medium mb-1"
-                    >
-                      Name
-                    </label>
-                    <Input
-                      id="name"
-                      name="name"
-                      placeholder="Your Name"
-                      onChange={handleFieldChange("name")}
-                    />
-                    {fieldErrors.name && (
-                      <p className="text-sm text-red-500 mt-1">
-                        {fieldErrors.name}
-                      </p>
-                    )}
-                  </div>
-                  <div>
-                    <label
-                      htmlFor="email"
-                      className="block text-sm font-medium mb-1"
-                    >
-                      Email
-                    </label>
-                    <Input
-                      id="email"
-                      name="email"
-                      type="email"
-                      placeholder="Your Email"
-                      onChange={handleFieldChange("email")}
-                    />
-                    {fieldErrors.email && (
-                      <p className="text-sm text-red-500 mt-1">
-                        {fieldErrors.email}
-                      </p>
-                    )}
-                  </div>
-                </div>
-
-                <div>
-                  <label
-                    htmlFor="subject"
-                    className="block text-sm font-medium mb-1"
-                  >
-                    Subject
-                  </label>
-                  <Input
-                    id="subject"
-                    name="subject"
-                    placeholder="Subject"
-                    onChange={handleFieldChange("subject")}
+              <form onSubmit={onSubmit} className="space-y-4">
+                <div className="grid sm:grid-cols-2 gap-4">
+                  <InputField
+                    label="Name"
+                    name="name"
+                    error={fieldErrors.name}
+                    onChange={handleFieldChange("name")}
                   />
-                  {fieldErrors.subject && (
-                    <p className="text-sm text-red-500 mt-1">
-                      {fieldErrors.subject}
-                    </p>
-                  )}
+                  <InputField
+                    label="Email"
+                    name="email"
+                    type="email"
+                    error={fieldErrors.email}
+                    onChange={handleFieldChange("email")}
+                  />
                 </div>
 
+                <InputField
+                  label="Subject"
+                  name="subject"
+                  error={fieldErrors.subject}
+                  onChange={handleFieldChange("subject")}
+                />
+
                 <div>
-                  <label
-                    htmlFor="message"
-                    className="block text-sm font-medium mb-1"
-                  >
-                    Message
-                  </label>
+                  <label className="text-sm font-medium">Message</label>
                   <Textarea
-                    id="message"
                     name="message"
-                    placeholder="Your Message"
                     rows={5}
+                    placeholder="Your Message"
                     onChange={handleFieldChange("message")}
                   />
                   {fieldErrors.message && (
@@ -237,19 +177,28 @@ const Contact = ({ data }) => {
 
                 <Button
                   type="submit"
-                  className="w-full mt-2"
                   disabled={status === "sending"}
+                  className="w-full"
                 >
                   {status === "sending" ? "Sending..." : "Send Message"}
                 </Button>
               </form>
             </div>
-          </div>
+          )}
         </div>
       </div>
+
       <ToastContainer />
     </section>
   );
 };
+
+const InputField = ({ label, name, type = "text", error, onChange }) => (
+  <div>
+    <label className="text-sm font-medium">{label}</label>
+    <Input name={name} type={type} onChange={onChange} />
+    {error && <p className="text-sm text-red-500 mt-1">{error}</p>}
+  </div>
+);
 
 export default Contact;

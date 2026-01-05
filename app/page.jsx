@@ -15,7 +15,7 @@ import Education from "../components/Education.jsx";
 import Hero from "../components/Hero.jsx";
 import Header from "../components/Header.jsx";
 
-import { scrollToTop, scrollToSection} from "../utils/common.utils.js";
+import { scrollToTop, scrollToSection } from "../utils/common.utils.js";
 
 export default function Portfolio() {
   const [data, setData] = useState(null);
@@ -70,6 +70,18 @@ export default function Portfolio() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  const config = data?.config || {
+    enableAbout: true,
+    enableServices: true,
+    enableSkills: true,
+    enableEducation: true,
+    enableExperience: true,
+    enableProjects: true,
+    enableBlog: false,
+    showSocialLinks: true,
+    showContactForm: true,
+    numOfProjectsOnHomePage: 3,
+  };
 
   if (loading) {
     return (
@@ -90,19 +102,18 @@ export default function Portfolio() {
       <main className="pt-20">
         <Hero data={data} scrollToSection={scrollToSection} loading={loading} />
 
-        <About data={data} />
-        <Service data={data} />
+        {config.enableAbout && <About data={data} />}
+        {config.enableServices && <Service data={data} />}
 
-        <Skills data={data} />
+        {config.enableSkills && <Skills data={data} />}
 
-        <Education data={data} />
+        {config.enableEducation && <Education data={data} />}
 
-        <Experience data={data} />
+        {config.enableExperience && <Experience data={data} />}
 
-        <Project data={data} />
+        {config.enableProjects && <Project data={data} />}
 
-        <SocialLinks data={data} />
-
+        {config.showSocialLinks && <SocialLinks data={data} />}
         <Contact data={data} />
       </main>
 

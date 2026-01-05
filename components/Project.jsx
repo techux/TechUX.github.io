@@ -11,6 +11,7 @@ import { Badge } from "@/components/ui/badge";
 import Image from "next/image";
 
 const Project = ({ data }) => {
+  const numOfProjectsOnHomePage = data.config?.numOfProjectsOnHomePage || 3;
   return (
     <section id="projects" className="py-20 bg-muted/10">
       <div className="container mx-auto px-4">
@@ -22,7 +23,7 @@ const Project = ({ data }) => {
         </h2>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
-          {data.projects.map(
+          {data.projects.slice(0, numOfProjectsOnHomePage).map(
             (project, index) =>
               project.display && (
                 <Card
@@ -106,6 +107,21 @@ const Project = ({ data }) => {
                 </Card>
               )
           )}
+        </div>
+        <div
+          className="flex justify-center mt-10"
+          data-aos="fade-up"
+          data-aos-delay="100"
+        >
+          <Button asChild size="lg" className="px-8">
+            <a
+              href={data.projectsPageUrl || "#"}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              View All Projects
+            </a>
+          </Button>
         </div>
       </div>
     </section>

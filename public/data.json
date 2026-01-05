@@ -364,5 +364,17 @@
       "value": "Freelance Available",
       "icon": "FaClock"
     }
-  ]
+  ],
+  "config": {
+    "enableAbout": true,
+    "enableServices": true,
+    "enableSkills": true,
+    "enableEducation": true,
+    "enableExperience": true,
+    "enableProjects": true,
+    "enableBlog": false,
+    "showSocialLinks": false,
+    "showContactForm": false,
+    "numOfProjectsOnHomePage": 3
+  }
 }

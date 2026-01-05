@@ -15,6 +15,8 @@ import Education from "../components/Education.jsx";
 import Hero from "../components/Hero.jsx";
 import Header from "../components/Header.jsx";
 
+import { scrollToTop, scrollToSection} from "../utils/common.utils.js";
+
 export default function Portfolio() {
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -68,22 +70,6 @@ export default function Portfolio() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const scrollToTop = () => {
-    window.scrollTo({
-      top: 0,
-      behavior: "smooth",
-    });
-  };
-
-  const scrollToSection = (sectionId) => {
-    const section = document.getElementById(sectionId);
-    if (section) {
-      window.scrollTo({
-        top: section.offsetTop - 80,
-        behavior: "smooth",
-      });
-    }
-  };
 
   if (loading) {
     return (

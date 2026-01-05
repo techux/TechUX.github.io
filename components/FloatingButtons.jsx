@@ -16,7 +16,6 @@ const FloatingButtons = ({ data, showScrollTop, scrollToTop }) => {
 
   return (
     <>
-      {console.log(actionButtonBottom)}
       <div
         className="fixed right-6 flex flex-col space-y-2 z-50 transition-all duration-300"
         style={{ bottom: actionButtonBottom + "px" }}

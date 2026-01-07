@@ -99,6 +99,10 @@ if (data.projects?.length) {
         llm += bullet(`Source: ${project.codeUrl}`) + "\n";
       }
 
+      if (project.slug) {
+        llm += bullet(`More info: ${data.url}/project/${project.slug}`) + "\n";
+      }
+
       llm += "\n";
     });
 }

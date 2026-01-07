@@ -12,6 +12,7 @@ import { Badge } from "@/components/ui/badge";
 
 import data from "@/public/data.json";
 import Link from "next/link";
+import Script from "next/script";
 
 const projectsData = data;
 
@@ -21,7 +22,11 @@ export function generateStaticParams() {
   }));
 }
 
-export default function ProjectDetailPage({ params }) {
+export default function ProjectDetailPage({
+  params,
+}: {
+  params: { slug: string };
+}) {
   const project = projectsData.projects.find((p) => p.slug === params.slug);
 
   console.log(project);
@@ -64,7 +69,7 @@ export default function ProjectDetailPage({ params }) {
             alt={project.title}
             width={500}
             height={600}
-            className="w-full h-auto"
+            className="w-auto h-96 mx-auto object-contain rounded-md mt-6"
             loading="lazy"
           />
 
@@ -166,6 +171,41 @@ export default function ProjectDetailPage({ params }) {
           </Button>
         </div>
       </div>
+
+      <Script
+        id="project-webpage-jsonld"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "WebPage",
+            "@id": `${data.url}/project/${project.slug}`,
+            name: `${project.title} – ${data.name}`,
+            description: project.description,
+            url: `${data.url}/project/${project.slug}`,
+            primaryImageOfPage: {
+              "@type": "ImageObject",
+              url: project.image,
+            },
+            mainEntity: {
+              "@type": "SoftwareApplication",
+              "@id": `${data.url}/project/${project.slug}#software`,
+              name: project.title,
+              description: project.description,
+              image: project.image,
+              applicationCategory: "WebApplication",
+              operatingSystem: "All",
+              keywords: project.technologies.join(", "),
+              sameAs: [project.demoUrl, project.codeUrl].filter(Boolean),
+              author: {
+                "@type": "Person",
+                name: data.name,
+                url: data.url,
+              },
+            },
+          }),
+        }}
+      />
     </section>
   );
 }

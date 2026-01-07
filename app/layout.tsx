@@ -20,6 +20,10 @@ export const metadata: Metadata = {
 
   keywords: [
     "Devesh Singh",
+    "Devesh Developer",
+    "Devesh Backend Developer",
+    "Devesh Varanasi",
+    "Devesh Singh Varanasi",
     "Full Stack Developer",
     "Web Developer",
     "React Developer",
@@ -115,12 +119,15 @@ const projectSchema = data.projects
     const base = {
       name: project.title,
       description: project.description,
-      url: project.demoUrl || project.codeUrl,
+      url: data.url + `/project/${project.slug}`,
+      sameAs: [project.demoUrl, project.codeUrl].filter(Boolean),
+      image: project.image,
       creator: {
         "@type": "Person",
         name: data.name,
       },
       about: project.technologies,
+      keywords: project.technologies.join(", "),
     };
 
     // Open-source / package project

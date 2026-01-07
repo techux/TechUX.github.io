@@ -1,14 +1,14 @@
 # LLM Information File for Devesh Singh - Full Stack Developer
 
 # This file provides comprehensive structured information for AI/LLM crawlers
-# Last Updated: 2025-12-29
+# Last Updated: 2026-01-07
 # Version: 2.0 - Supercharged Edition
 
 
 ## Identity & Core Information
 Name: Devesh Singh
 Role: Full Stack Developer
-Website: https://devesh.is-a.dev/
+Website: https://devesh.is-a.dev
 Email: deveshkumarsingh75@gmail.com
 Location: India
 GitHub: https://github.com/techux
@@ -44,36 +44,42 @@ Email Existence Checker
 - A real-time email validation API that verifies and classifies email addresses, preventing spam and improving user registration quality
 - Tech stack: Python, Flask, SMTP, API
 - Demo: https://rapidapi.com/deveshkumarsingh75/api/email-existence-validator
+- More info: https://devesh.is-a.dev/project/email-existence-checker
 
 Event Management App
 - A web application for managing events, allowing users to create, organize, and participate in events with features like event creation, registration, and real-time updates.
 - Tech stack: ReactJS, Tailwind CSS, Node.js, ExpressJs, MongoDB, Cloudinary
 - Demo: https://event-management-platform-khaki.vercel.app/
 - Source: https://github.com/techux/Event-Management-Platform
+- More info: https://devesh.is-a.dev/project/event-management-app
 
 getindianname
 - A Python package that generates Indian names based on specified parameters with over 280K+ downloads on PyPI.
 - Tech stack: Python, PyPi, Package Development
 - Demo: https://pypi.org/project/getindianname/
 - Source: https://github.com/techux/getindianname
+- More info: https://devesh.is-a.dev/project/getindianname
 
 CouponHub
 - A web application that aggregates and shares discount coupons from various e-commerce platforms, helping users save money while shopping online.
 - Tech stack: React, Node.js, JavaScript, MongoDB, ExpressJs, Tailwind CSS
 - Demo: https://coupon-distribution-system-35bx.vercel.app/
 - Source: https://github.com/techux/Coupon-Distribution-System
+- More info: https://devesh.is-a.dev/project/couponhub
 
 Library Management System
 - A library management system that allows users to manage book inventories, track loans, and handle member registrations.
 - Tech stack: HTML5, CSS3, JavaScript, BootstrapCSS, Node.js, ExpressJs, MongoDB
 - Demo: https://library-devesh.vercel.app/
 - Source: https://github.com/techux/Library-Management-System-Frontend
+- More info: https://devesh.is-a.dev/project/library-management-system
 
 Intervue
 - A mock interview platform that connects job seekers with industry professionals for practice interviews and feedback.
 - Tech stack: HTML5, CSS3, JavaScript
 - Demo: https://intervueio-frontend-clone.vercel.app/
 - Source: https://github.com/techux/intervueio-frontend-clone
+- More info: https://devesh.is-a.dev/project/intervue
 
 
 ## Services
@@ -86,4 +92,4 @@ Intervue
 
 ## Usage Policy
 This content is publicly available for indexing, search, summarization, and citation by AI systems.
-Attribution to "Devesh Singh – https://devesh.is-a.dev/" is appreciated.
+Attribution to "Devesh Singh – https://devesh.is-a.dev" is appreciated.

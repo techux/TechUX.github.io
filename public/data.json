@@ -232,7 +232,13 @@
   "projects": [
     {
       "title": "Email Existence Checker",
+      "slug": "email-existence-checker",
       "description": "A real-time email validation API that verifies and classifies email addresses, preventing spam and improving user registration quality",
+      "features": [
+        "Syntax Validation: Ensures email addresses conform to standard formats.",
+        "Domain Verification: Checks if the email domain exists and is reachable.",
+        "Mailbox Existence Check: Uses SMTP protocols to verify if the mailbox is active."
+      ],
       "type": "API Service",
       "technologies": [
         "Python",
@@ -240,13 +246,25 @@
         "SMTP",
         "API"
       ],
-      "image": "placeholder.png",
+      "image": "/placeholder.png",
       "demoUrl": "https://rapidapi.com/deveshkumarsingh75/api/email-existence-validator",
       "codeUrl": null,
-      "display": true
+      "display": true,
+      "details": "The <b>Email Existence Checker</b> is a robust API service designed to validate and classify email addresses in real-time. Built using Python and Flask, this API leverages SMTP protocols to verify the existence of email addresses, helping businesses prevent spam registrations and improve the quality of their user databases. Key features include syntax validation, domain verification, and mailbox existence checks. The API is easy to integrate into existing systems, providing developers with a reliable tool for enhancing user registration processes and maintaining clean email lists.",
+      "challenges": [
+        "SMTP Limitations: Dealing with SMTP servers that do not respond to verification requests.",
+        "False Positives/Negatives: Ensuring high accuracy in email validation to minimize incorrect classifications.",
+        "Rate Limiting: Managing API request limits to prevent abuse while maintaining performance."
+      ],
+      "learned": [
+        "Deepened understanding of email protocols and validation techniques.",
+        "Gained experience in building and deploying RESTful APIs with Flask.",
+        "Learned to handle edge cases and improve accuracy in data validation processes."
+      ]
     },
     {
       "title": "Event Management App",
+      "slug": "event-management-app",
       "description": "A web application for managing events, allowing users to create, organize, and participate in events with features like event creation, registration, and real-time updates.",
       "type": "Full Stack",
       "technologies": [
@@ -260,10 +278,12 @@
       "image": "/images/project/eventhub.png",
       "demoUrl": "https://event-management-platform-khaki.vercel.app/",
       "codeUrl": "https://github.com/techux/Event-Management-Platform",
-      "display": true
+      "display": true,
+      "details": "The <b>Event Management App</b> is a comprehensive web application designed to streamline the process of organizing and participating in events. Built with ReactJS for the frontend and Node.js with Express for the backend, this full-stack solution offers a user-friendly interface for event creation, registration, and management. Key features include real-time updates, user authentication, and integration with Cloudinary for media handling. The app utilizes MongoDB for efficient data storage and retrieval, ensuring a seamless experience for both event organizers and attendees."
     },
     {
       "title": "getindianname",
+      "slug": "getindianname",
       "description": "A Python package that generates Indian names based on specified parameters with over 280K+ downloads on PyPI.",
       "type": "Python Package",
       "technologies": [
@@ -274,10 +294,12 @@
       "image": "https://socialify.git.ci/techux/getindianname/image?language=1&name=1&owner=1&pattern=Solid&stargazers=1&theme=Auto",
       "demoUrl": "https://pypi.org/project/getindianname/",
       "codeUrl": "https://github.com/techux/getindianname",
-      "display": true
+      "display": true,
+      "details": "The <b>getindianname</b> Python package is a versatile tool designed to generate authentic Indian names based on user-defined parameters. With over 280,000 downloads on PyPI, this package has become a popular choice for developers and researchers needing realistic Indian names for testing, data generation, or other applications. The package allows users to specify criteria such as gender and region, ensuring that the generated names are culturally appropriate and diverse. Easy to install and integrate, <b>getindianname</b> simplifies the process of name generation in Python projects."
     },
     {
       "title": "CouponHub",
+      "slug": "couponhub",
       "description": "A web application that aggregates and shares discount coupons from various e-commerce platforms, helping users save money while shopping online.",
       "type": "Full Stack",
       "technologies": [
@@ -291,10 +313,12 @@
       "image": "/images/project/couponhub.png",
       "demoUrl": "https://coupon-distribution-system-35bx.vercel.app/",
       "codeUrl": "https://github.com/techux/Coupon-Distribution-System",
-      "display": true
+      "display": true,
+      "details": "The <b>CouponHub</b> web application is a comprehensive platform designed to aggregate and share discount coupons from various e-commerce platforms. Built using React for the frontend and Node.js with Express for the backend, this full-stack solution provides users with an easy-to-navigate interface to discover and utilize coupons while shopping online. The application leverages MongoDB for efficient data storage, allowing users to search for coupons by category, store, or discount type. With a focus on user experience and savings, <b>CouponHub</b> aims to help shoppers maximize their discounts and enhance their online shopping experience."
     },
     {
       "title": "Library Management System",
+      "slug": "library-management-system",
       "description": "A library management system that allows users to manage book inventories, track loans, and handle member registrations.",
       "type": "Full Stack",
       "technologies": [
@@ -309,10 +333,12 @@
       "image": "/images/project/library.png",
       "demoUrl": "https://library-devesh.vercel.app/",
       "codeUrl": "https://github.com/techux/Library-Management-System-Frontend",
-      "display": true
+      "display": true,
+      "details": "The <b>Library Management System</b> is a comprehensive web application designed to streamline the management of library resources. Built with HTML5, CSS3, and JavaScript for the frontend, and Node.js with Express for the backend, this full-stack solution allows users to efficiently manage book inventories, track loans, and handle member registrations. The system utilizes MongoDB for robust data storage, ensuring that library staff can easily access and update information. Key features include book search functionality, loan tracking, and member management, making it an essential tool for modern libraries seeking to enhance their operational efficiency."
     },
     {
       "title": "Intervue",
+      "slug": "intervue",
       "description": "A mock interview platform that connects job seekers with industry professionals for practice interviews and feedback.",
       "type": "Frontend",
       "technologies": [
@@ -323,7 +349,8 @@
       "image": "/images/project/intervue.png",
       "demoUrl": "https://intervueio-frontend-clone.vercel.app/",
       "codeUrl": "https://github.com/techux/intervueio-frontend-clone",
-      "display": true
+      "display": true,
+      "details": "The <b>Intervue</b> platform is a user-friendly web application designed to facilitate mock interviews for job seekers. Built using HTML5, CSS3, and JavaScript, this frontend solution connects users with industry professionals who provide practice interviews and constructive feedback. The platform aims to enhance the interview skills of job seekers by simulating real-world interview scenarios, allowing them to gain confidence and improve their performance. With an intuitive interface and seamless user experience, <b>Intervue</b> serves as a valuable resource for individuals preparing for job interviews across various industries."
     }
   ],
   "socialLinks": [
@@ -373,8 +400,9 @@
     "enableExperience": true,
     "enableProjects": true,
     "enableBlog": false,
-    "showSocialLinks": false,
-    "showContactForm": false,
-    "numOfProjectsOnHomePage": 3
+    "showSocialLinks": true,
+    "showContactForm": true,
+    "numOfProjectsOnHomePage": 3,
+    "numOfProjectsPerLoad": 6
   }
 }

@@ -9,6 +9,7 @@ import {
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import Image from "next/image";
+import Link from "next/link";
 
 const Project = ({ data }) => {
   const numOfProjectsOnHomePage = data.config?.numOfProjectsOnHomePage || 3;
@@ -32,15 +33,17 @@ const Project = ({ data }) => {
                   data-aos-delay={index * 100}
                   className="overflow-hidden relative group border border-primary/10 hover:border-primary/30 transition-all duration-300 hover:shadow-lg flex flex-col justify-between"
                 >
-                  <div className="relative h-48 sm:h-56 overflow-hidden">
-                    <Image
-                      src={project.image || "/placeholder.svg"}
-                      alt={project.title}
-                      fill
-                      className="object-cover transition-transform duration-500 group-hover:scale-110"
-                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                    />
-                  </div>
+                  <Link href={`/project/${project.slug}`}>
+                    <div className="relative h-48 sm:h-56 overflow-hidden">
+                      <Image
+                        src={project.image || "/placeholder.svg"}
+                        alt={project.title}
+                        fill
+                        className="object-cover transition-transform duration-500 group-hover:scale-110"
+                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                      />
+                    </div>
+                  </Link>
 
                   {project.type && (
                     <Badge
@@ -103,6 +106,22 @@ const Project = ({ data }) => {
                         </a>
                       </Button>
                     )}
+                    {project.slug && (
+                      <Button
+                        asChild
+                        size="sm"
+                        variant="secondary"
+                        className="w-full sm:w-auto"
+                      >
+                        <a
+                          href={`/project/${project.slug}`}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          Details
+                        </a>
+                      </Button>
+                    )}
                   </CardFooter>
                 </Card>
               )
@@ -111,16 +130,10 @@ const Project = ({ data }) => {
         <div
           className="flex justify-center mt-10"
           data-aos="fade-up"
-          data-aos-delay="100"
+          data-aos-delay="50"
         >
           <Button asChild size="lg" className="px-8">
-            <a
-              href={data.projectsPageUrl || "#"}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              View All Projects
-            </a>
+            <a href="/project">View All Projects</a>
           </Button>
         </div>
       </div>

@@ -26,10 +26,12 @@ const Header = ({ data, scrollToSection, activeSection }) => {
     setMenuOpen(false);
   };
 
-  if (window.location.hash){
-    const sectionId = window.location.hash.substring(1);
-    scrollToSection(sectionId);    
-  }
+  useEffect( () => {
+    if (window.location.hash){
+      const sectionId = window.location.hash.substring(1);
+      scrollToSection(sectionId);    
+    }
+  }, [])
 
   return (
     <header className="fixed inset-x-0 top-0 z-50 overflow-x-hidden border-b bg-background/80 backdrop-blur">

@@ -37,6 +37,13 @@ export const metadata: Metadata = {
     "Freelance Full Stack Developer",
     "Web Developer Portfolio 2025",
     "TypeScript Developer",
+    "Devesh Singh Web Developer",
+    "Devesh web developer portfolio",
+    "Devesh Singh Next.js Developer",
+    "Devesh Singh LinkedIn",
+    "Devesh Singh Developer LinkedIn",
+    "Devesh Singh GitHub",
+    "Devesh Singh Chandigarh University"
   ],
 
   authors: [{ name: data.name, url: data.url }],
@@ -51,7 +58,7 @@ export const metadata: Metadata = {
   },
 
   icons: {
-    icon: data.profileImage,
+    icon: data.favicon || data.profileImage,
     shortcut: data.profileImage,
     apple: data.profileImage,
   },

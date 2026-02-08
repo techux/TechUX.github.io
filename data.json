@@ -10,6 +10,7 @@
   ],
   "shortBio": "Backend-focused software engineer building scalable APIs and high-performance systems using Node.js, Python, and MongoDB",
   "profileImage": "https://avatars.githubusercontent.com/u/58107305?v=4",
+  "favicon": "/favicon.png",
   "about": "I am a backend-focused software engineer with hands-on experience building and maintaining production-grade systems. I specialize in Node.js, Express, MongoDB, and Python, and enjoy designing clean APIs, optimizing database performance, and solving real-world engineering problems. I like working on projects that scale, writing maintainable code, and continuously learning technologies that help me build better, more reliable software.",
   "personalDetails": [
     {
@@ -30,7 +31,7 @@
     },
     {
       "label": "Experience",
-      "value": "8 Months"
+      "value": "10 Months"
     },
     {
       "label": "Freelance",
@@ -400,9 +401,12 @@
     "enableExperience": true,
     "enableProjects": true,
     "enableBlog": false,
+    "enableCertificates": true,
     "showSocialLinks": true,
     "showContactForm": true,
     "numOfProjectsOnHomePage": 3,
-    "numOfProjectsPerLoad": 6
+    "numOfProjectsPerLoad": 6,
+    "numOfCertificatesOnHomePage": 4,
+    "numOfCertificatesPerLoad": 6
   }
 }

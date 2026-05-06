@@ -4,7 +4,7 @@ const data = require("../public/data.json");
 // import data from "@/public/data.json";
 
 // const DATA_PATH = path.resolve("../public/data.json");
-const OUTPUT_PATH = path.resolve("public/llm.txt");
+const OUTPUT_PATH = path.resolve("public/llms.txt");
 
 console.log("Generating llm.txt from data.json...");
 console.log("Output path:", OUTPUT_PATH);

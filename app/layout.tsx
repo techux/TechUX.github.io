@@ -174,10 +174,9 @@ export default function RootLayout({
         <link rel="alternate" type="text/plain" href="/llms.txt"></link>
         <link rel="alternate" type="text/markdown" href="/llms.md"></link>
 
-        <Script
-          id="website-jsonld"
+        <script
           type="application/ld+json"
-          strategy="beforeInteractive"
+          id="website-jsonld"
           dangerouslySetInnerHTML={{
             __html: JSON.stringify({
               "@context": "https://schema.org",
@@ -195,10 +194,9 @@ export default function RootLayout({
           }}
         />
 
-        <Script
-          id="profile-jsonld"
+        <script
           type="application/ld+json"
-          strategy="beforeInteractive"
+          id="profile-jsonld"
           dangerouslySetInnerHTML={{
             __html: JSON.stringify({
               "@context": "https://schema.org",

@@ -14,29 +14,14 @@ import Experience from "../components/Experience.jsx";
 import Education from "../components/Education.jsx";
 import Hero from "../components/Hero.jsx";
 import Header from "../components/Header.jsx";
+import data from "@/public/data.json"
 
 import { scrollToTop, scrollToSection } from "../utils/common.utils.js";
 
 export default function Portfolio() {
-  const [data, setData] = useState(null);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false)
   const [activeSection, setActiveSection] = useState("home");
   const [showScrollTop, setShowScrollTop] = useState(false);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await fetch("/data.json");
-        const jsonData = await response.json();
-        setData(jsonData);
-        setLoading(false);
-      } catch (error) {
-        console.error("Error loading data:", error);
-      }
-    };
-
-    fetchData();
-  }, []);
 
   // Initialize AOS
   useEffect(() => {

@@ -1,5 +1,3 @@
-"use client";
-
 export default function Footer({ data, scrollToSection }) {
   return (
     <footer className="py-8 border-t">

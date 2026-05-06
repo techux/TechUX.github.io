@@ -4,10 +4,12 @@ const data = require("../public/data.json");
 // import data from "@/public/data.json";
 
 // const DATA_PATH = path.resolve("../public/data.json");
-const OUTPUT_PATH = path.resolve("public/llms.txt");
+const LLM_TEXT_OUTPUT_PATH = path.resolve("public/llms.txt");
+const LLM_MARKDOWN_OUTPUT_PATH = path.resolve("public/llms.md");
 
 console.log("Generating llm.txt from data.json...");
-console.log("Output path:", OUTPUT_PATH);
+console.log("Output path (llms.txt) :", LLM_TEXT_OUTPUT_PATH);
+console.log("Output path (llms.md):", LLM_MARKDOWN_OUTPUT_PATH);
 
 const section = (title) => `\n## ${title}\n`;
 const bullet = (text) => `- ${text}`;
@@ -121,6 +123,8 @@ llm +=
 llm +=
   `Attribution to "${data.name} – ${data.url}" is appreciated.\n`;
 
-fs.writeFileSync(OUTPUT_PATH, llm.trim() + "\n");
+fs.writeFileSync(LLM_TEXT_OUTPUT_PATH, llm.trim() + "\n");
+fs.writeFileSync(LLM_MARKDOWN_OUTPUT_PATH, llm.trim() + "\n");
 
-console.log("✅ llm.txt generated successfully at:", OUTPUT_PATH);
+console.log("✅ llm.txt generated successfully at:", LLM_TEXT_OUTPUT_PATH);
+console.log("✅ llm.md generated successfully at:", LLM_MARKDOWN_OUTPUT_PATH);

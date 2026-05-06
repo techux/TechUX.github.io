@@ -171,6 +171,8 @@ export default function RootLayout({
           rel="stylesheet"
           href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css"
         />
+        <link rel="alternate" type="text/plain" href="/llms.txt"></link>
+        <link rel="alternate" type="text/markdown" href="/llms.md"></link>
 
         <Script
           id="website-jsonld"

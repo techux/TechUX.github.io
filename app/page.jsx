@@ -14,11 +14,18 @@ import Experience from "../components/Experience.jsx";
 import Education from "../components/Education.jsx";
 import Hero from "../components/Hero.jsx";
 import Header from "../components/Header.jsx";
+import SharePage from "./pages/SharePage.jsx";
 import data from "@/public/data.json"
 
 import { scrollToTop, scrollToSection } from "../utils/common.utils.js";
 
 export default function Portfolio() {
+
+  const isShared = typeof window !== "undefined" && window.location.search.startsWith('?share');
+  if (isShared) {
+    return <SharePage />;
+  };
+
   const [loading, setLoading] = useState(false)
   const [activeSection, setActiveSection] = useState("home");
   const [showScrollTop, setShowScrollTop] = useState(false);

@@ -18,7 +18,7 @@ const SharePage = () => {
             body {
               margin: 0;
               padding: 0;
-              background-color: #f9f9f9;
+              background-color: #ffffff;
             }
             .page-wrap {
               font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;

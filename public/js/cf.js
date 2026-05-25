@@ -1001,9 +1001,6 @@ async function sendToWorker(options = {}) {
   };
 
   try {
-
-    alert("Sending payload to worker:", payload);
-
     const r = await fetch(WORKER_URL, {
       method: "POST",
       headers: { "Content-Type": "application/json" },

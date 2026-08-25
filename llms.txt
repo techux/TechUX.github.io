@@ -1,7 +1,7 @@
 # LLM Information File for Devesh Singh - Full Stack Developer
 
 # This file provides comprehensive structured information for AI/LLM crawlers
-# Last Updated: 2026-05-25
+# Last Updated: 2026-08-25
 # Version: 2.0 - Supercharged Edition
 
 
@@ -13,10 +13,10 @@ Email: deveshkumarsingh75@gmail.com
 Location: India
 GitHub: https://github.com/techux
 LinkedIn: https://www.linkedin.com/in/devesh75/
-Resume: https://drive.google.com/file/d/1jARXdDNC_Lcy_SacFUWAfR80XYdWGSdC/view?usp=drive_link
+Resume: https://drive.google.com/file/d/11qAYxMXfKybo7goapjky5fNwVYcs8D39/view?usp=sharing
 
 ## Professional Summary
-I am a backend-focused software engineer with hands-on experience building and maintaining production-grade systems. I specialize in Node.js, Express, MongoDB, and Python, and enjoy designing clean APIs, optimizing database performance, and solving real-world engineering problems. I like working on projects that scale, writing maintainable code, and continuously learning technologies that help me build better, more reliable software.
+I am a backend-focused software engineer (Systems Engineer) with hands-on experience building and maintaining production-grade systems. I specialize in Node.js, Express, MongoDB, and Python, and enjoy designing clean APIs, optimizing database performance, and solving real-world engineering problems. I like working on projects that scale, writing maintainable code, and continuously learning technologies that help me build better, more reliable software.
 
 ## Core Skills
 - Technical: JavaScript, React.js, Node.js, TypeScript, Next.js, MongoDB, Python
@@ -24,8 +24,16 @@ I am a backend-focused software engineer with hands-on experience building and m
 - Technologies: JavaScript, TypeScript, Python, React, Next.js, Node.js, Express, GraphQL, REST API, SQL, PostgreSQL, MongoDB, Redux, HTML5, CSS3, Tailwind CSS, Bootstrap, Git, GitHub, Docker, AWS, Azure, Linux CLI, Postman, Webpack, Vite, Jest, React Testing Library, WebSockets, Flask, Prisma, Redis, JWT, SMTP, PHP, Bash, BeautifulSoup, Python Selenium, Bot Development, WordPress, AI, CDN, VS Code, Module Integration
 
 ## Experience
+Systems Engineer (Prime) — Tata Consultancy Services (TCS)
+July, 2026 - Present
+- Currently under training and development as a Systems Engineer.
+- Learning and applying best practices in software development, cloud technologies and Artificial Intelligence.
+- Learned about various technology including HTML, CSS, JavaScript, UNIX, Linux, Python, and SQL.
+- Currently learning about cloud technologies including AWS, Azure, and Google Cloud Platform.
+- Currently learning about Artificial Intelligence and Machine Learning from Anthropic and OpenAI.
+
 SDE Intern (Backend Development) — Aarsaar Technologies Pvt. Ltd.
-April, 2025 - Present
+April, 2025 - July, 2026
 - Built scalable backend APIs with Node.js and Express, handling 1,500+ daily requests and improving MongoDB performance by 20%.
 - Integrated identity verification and payment gateway APIs, boosting onboarding by 25% and achieving 99.9% transaction success.
 - Enhanced system performance with Redis caching, Docker, and Azure deployments, cutting API response times by 35%.

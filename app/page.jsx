@@ -15,18 +15,19 @@ import Education from "../components/Education.jsx";
 import Hero from "../components/Hero.jsx";
 import Header from "../components/Header.jsx";
 import SharePage from "./pages/SharePage.jsx";
-import data from "@/public/data.json"
+import data from "@/public/data.json";
 
 import { scrollToTop, scrollToSection } from "../utils/common.utils.js";
 
 export default function Portfolio() {
-
-  const isShared = typeof window !== "undefined" && window.location.search.startsWith('?share');
+  const isShared =
+    typeof window !== "undefined" &&
+    window.location.search.startsWith("?share");
   if (isShared) {
     return <SharePage />;
-  };
+  }
 
-  const [loading, setLoading] = useState(false)
+  const [loading, setLoading] = useState(false);
   const [activeSection, setActiveSection] = useState("home");
   const [showScrollTop, setShowScrollTop] = useState(false);
 
@@ -95,15 +96,16 @@ export default function Portfolio() {
         <Hero data={data} scrollToSection={scrollToSection} loading={loading} />
 
         {config.enableAbout && <About data={data} />}
-        {config.enableServices && <Service data={data} />}
-
-        {config.enableSkills && <Skills data={data} />}
-
-        {config.enableEducation && <Education data={data} />}
 
         {config.enableExperience && <Experience data={data} />}
 
+        {config.enableSkills && <Skills data={data} />}
+
         {config.enableProjects && <Project data={data} />}
+
+        {config.enableServices && <Service data={data} />}
+
+        {config.enableEducation && <Education data={data} />}
 
         {config.showSocialLinks && <SocialLinks data={data} />}
         <Contact data={data} />
